@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Scoped CSS Variables and JS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Neucha&family=Source+Code+Pro&display=swap" rel="stylesheet">
+  <style>
+    /*
+        misc styles, nothing to do with CSS variables
+      */
+    :root {
+      --base: #ffc600;
+      --spacing: 10px;
+      --blur: 10px;
+      --gscale: 0%;
+      --bradius: 0;
+    }
+  
+    img {
+      padding: var(--spacing);
+      background: var(--base);
+      filter: blur(var(--blur));
+      transform: rotate(var(--rotate));
+      margin: 30px;
+      border-radius: var(--bradius);
+       width: 50%;
+      margin: 10px auto;
+    }
+  
+    h2 {
+      font-family: 'Neucha', cursive;
+    }
+  
+    .hl {
+      color: var(--base);
+    }
+  
+    /*
+        misc styles, nothing to do with CSS variables
+      */
+  
+    body {
+      text-align: center;
+      height: 100vh;
+      background: url(https://i.pinimg.com/originals/dd/7f/6f/dd7f6fb403d859c7c12358a9f2537818.jpg);
+      color: white;
+      font-family: 'helvetica neue', sans-serif;
+      font-weight: 100;
+      font-size: 50px;
+
+    }
+  
+    .controls {
+      margin-bottom: 50px;
+    }
+  
+    input {
+      width: 200px;
+    }
+  
+    input[type=text] {
+      transition: width 0.4s ease-in-out;
+      border-radius: 100px;
+      height: 30px;
+      outline: none;
+      border: 0;
+    }
+  
+    input[type=text]:focus {
+      width: 75%;
+  
+    }
+
+.slider {
+  -webkit-appearance: none;
+  width: 35%;
+  height: 10px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 1;
+}
+
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 23px;
+  height: 24px;
+  border: 0;
+  background: url('https://www.flaticon.com/svg/static/icons/svg/685/685849.svg');
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 23px;
+  height: 25px;
+  border: 0;
+  background: url('https://www.flaticon.com/svg/static/icons/svg/685/685849.svg');
+  cursor: pointer;
+}
+ /* https://www.flaticon.com/svg/static/icons/svg/685/685849.svg  */
+    button {
+      display: block;
+      margin: 10px auto;
+      border-radius: 100px;
+      padding: 20px;
+      width: 10rem;
+      outline: none;
+      border: 0;
+    }
+  
+    button:hover {
+      transition: width 0.4s ease-in-out;
+    }
+  
+    label {
+      font-size: 1rem;
+      font-family: 'Source Code Pro', monospace;
+    }
+  
+    .lol {
+  
+      margin: 2%;
+  
+    }
+  
+    .edit {
+  
+      border: 10px solid var(--base);
+      width: 100%;
+      margin: 10px auto;
+      padding: 0;
+      display: inline-block;
+       border-width: 20px;
+     
+    
+  border: 2px solid;
+  border-image-source:url('https://www.flaticon.com/svg/static/icons/svg/685/685849.svg') ;
+  border-image-slice: 20 25;
+  border-image-repeat: round;
+    }
+    
+
+   
+  
+    footer {
+      background-color: #393e46;
+      font-size: 10px;
+      font-family: 'Source Code Pro', monospace;
+      margin: 0;
+      padding: 25px;
+      border-radius: 100px;
+     
+    }
+  
+    a {
+      text-decoration: none;
+      color: white;
+      font-size: 15px;
+    }
+
+    a:hover{
+      color: #fff;
+      font-size: 18px;
+    }
+
+    @media  (min-width : 620px)
+{
+  label
+  {
+    font-size: 1.8rem;
+  }
+  .edit{
+
+    width: 60%;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <h2>Update CSS Variables with <span class='hl'>JS</span></h2>
+
+  <div class="edit borderimg2">
+
+  <div class="controls">
+
+    <div class="lol">
+      <label for="spacing">Spacing:</label>
+      <input id="spacing" class="slider" type="range" name="spacing" min="10" max="200" value="10" data-sizing="px">
+    </div>
+  
+    <div class="lol">
+      <label for="blur">Blur:</label>
+      <input id="blur" class="slider"  type="range" name="blur" min="0" max="25" value="10" data-sizing="px">
+    </div>
+  
+    <div class="lol">
+      <label for="rotate">Rotate:</label>
+      <input id="rotate" class="slider"  type="range" name="rotate" min="0" max="360" value="10" data-sizing="deg">
+    </div>
+  
+  
+   <div class="lol">
+      <label for="bradius">border Radius</label>
+      <input id="bradius" class="slider"  type="range" name="bradius" min="0" max="100" value="0" data-sizing="%">
+   </div>
+  
+  
+   <div class="lol">
+      <label for="base">Base Color</label>
+      <input id="base" type="color" name="base" value="#ffc600">
+   </div>
+  
+    <label for="link">Image link:</label>
+    <form class="pure-form">
+      <div class="col-sm-10">
+        <form class="pure-form">
+          <input id="name" type="text" placeholder="Paste the link" />
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    </form>
+  </div>
+
+  </div>
+
+   <div class="pro"><img id="image" src="https://images.unsplash.com/photo-1508361001413-7a9dca21d08a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"></div>
+  
+
+  <footer>
+   
+    Modified and developed by © Sai venkat
+    <br>
+    <a href="https://github.com/Thunderbolt2-o">Github</a>
+  </footer>
+
+  <script>
+        const inputs = document.querySelectorAll('.controls input');
+
+        
+          function handleUpdate() {
+            const suffix = this.dataset.sizing || '';
+            document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+          }
+
+
+
+          inputs.forEach(input => input.addEventListener('change', handleUpdate));
+          inputs.forEach(input => input.addEventListener('mousemove', handleUpdate));
+        
+
+          
+            var nameInput = document.getElementById('name');
+
+            document.querySelector('form.pure-form').addEventListener('submit', function (e) {
+
+              //prevent the normal submission of the form
+            e.preventDefault();
+            linkin = nameInput.value;
+            console.log(linkin);  
+              console.log(nameInput.value);
+              document.getElementById("image").src = nameInput.value;
+            });
+          
+        
+
+  </script>
+
+</body>
+</html>
